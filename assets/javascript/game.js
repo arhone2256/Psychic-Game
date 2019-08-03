@@ -17,6 +17,16 @@
       // Determines which key was pressed.
       var userGuess = event.key;
 
+      /*
+      var rnd = Math.random();
+      var l = rnd * letters.length;
+      var floor = Math.floor(l);
+
+      console.log('random: ' + rnd);
+      console.log('l ' + l);
+      console.log('floor: ' + floor);
+      */
+
       // Get random letter
       var computerChoice = letters[Math.floor(Math.random() * letters.length)];
 
@@ -26,7 +36,7 @@
       logMe = "User choose " + userGuess;
       console.log(logMe);
 
-      // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate number
+      // This logic determines the outcome of the game (win/loss/guesses), and increments the appropriate number
     if(userGuess === computerChoice){
         wins++;
     }else{
@@ -34,11 +44,22 @@
     }
 
     if(guesses === 0){
-        losses++
+        wins = 0;
+        losses = 0;
+        guesses = 10;
+        document.getElementById('computerchoice').innerHTML = "Computer choice: ";
+        document.getElementById('userguess').innerHTML = "Your choice: ";
+
+
+        alert('You LOST!!!');
+    }else{
+        document.getElementById('userguess').innerHTML = document.getElementById('userguess').innerHTML + userGuess + ', ';
+        document.getElementById('computerchoice').innerHTML ="Computer choice:" + computerChoice;
     }
 
     document.getElementById('wins').innerHTML = "Wins!: " + wins;
     document.getElementById('losses').innerHTML = "losses!: " + losses;
     document.getElementById('guesses').innerHTML = "Guesses left!: " + guesses;
-       
-};
+
+   
+}
